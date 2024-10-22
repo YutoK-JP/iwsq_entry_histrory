@@ -32,7 +32,7 @@ def checkCsv():
     log_created = datetime.strptime(log_list[0], TIME_FORMAT)
     today_start = datetime.now().replace(hour=0, minute=0, second=0)
 
-    if log_created < today_start: checkCsv()
+    if log_created < today_start: initCsv()
 
 # 入力者の入室記録確認
 def referenceEntryLog(number: str):
