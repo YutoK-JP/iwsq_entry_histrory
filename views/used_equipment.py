@@ -16,15 +16,15 @@ class UsedEquipment(ft.View):
         self.equipment_fields[0].focus()
         return super().did_mount()
 
-    def on_clear_button_click(self, e):
+    def on_clear_button_click(self, e=None):
         for field in self.equipment_fields:
             field.value = ""
         self.equipment_fields[0].focus()
 
-    def on_back_button_click(self, e):
+    def on_back_button_click(self, e=None):
         self.page.go("/")
 
-    def on_send_button_click(self, e):
+    def on_send_button_click(self, e=None):
         data = {"studentNo": self.studentNo}
         equipments =[field.value for field in self.equipment_fields if field.value != '']
         data["equipments"] =  equipments

@@ -10,6 +10,7 @@ import json
 import threading
 from setting import *
 
+
 def enter_request(number):
     data = {
         "type": "enter",
@@ -47,9 +48,19 @@ def main(page: ft.Page):
     page.theme = ft.Theme(font_family="m1")
     page.theme_mode = ft.ThemeMode.LIGHT
 
+    # キーボード入力の受付
+    def on_keyboard(e: ft.KeyboardEvent):
+        if page.route == "/" and e.shift and e.ctrl and e.key == "C":
+            page.views[-1].on_button_click()
+        if page.route == "/leave" and e.shift and e.ctrl:
+            if e.key == "C": page.views[-1].on_clear_button_click()
+            if e.key == "B": page.views[-1].on_back_button_click()
+            if e.key == "N": page.views[-1].on_send_button_click()
+
+    page.on_keyboard_event = on_keyboard
+
     #ルーティング変更時の処理
     def route_change(e):
-        print(page.route)
         if page.route == "/":
             page.views.clear()
             page.views.append( index.Index() )
@@ -58,8 +69,8 @@ def main(page: ft.Page):
             addEntryLog(page.views[-1].data["studentNo"])
             asyncio.new_event_loop().run_in_executor(None, enter_request, page.views[-1].data["studentNo"])
             ##################
-            page.views.append( entered.Entered())
-            time.sleep(2.5)
+            page.views.append( entered.Entered(data=page.views[-1].data["studentNo"]))
+            time.sleep(4)
             page.views.pop()
             top_view = page.views[-1]
             page.go("/")

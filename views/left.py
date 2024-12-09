@@ -9,7 +9,7 @@ class Left(ft.View):
     def __init__(self):
         self.data = None
         controls = self.get_controls()
-        super().__init__("/entered", controls=controls)
+        super().__init__("/left", controls=controls) 
 
     def get_controls(self):
         date_text = Calender(size=48, text_align=ft.TextAlign.LEFT)

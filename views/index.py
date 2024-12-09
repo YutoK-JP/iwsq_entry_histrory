@@ -17,7 +17,7 @@ class Index(ft.View):
         self.running = True
         return super().did_mount()
 
-    def on_button_click(self, e):
+    def on_button_click(self, e=None):
         self.number_field.value = ""
 
     def on_field_update(self, e):
