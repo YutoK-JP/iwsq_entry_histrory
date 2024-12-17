@@ -10,7 +10,6 @@ class Clock(ft.Text):
         self.value = datetime.now().strftime("%H:%M:%S")
 
     def before_update(self):
-        dt = datetime.now()
         self.value = datetime.now().strftime("%H:%M:%S")
 
 class Calender(ft.Text):

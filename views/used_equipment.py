@@ -54,7 +54,7 @@ class UsedEquipment(ft.View):
             ft.Text("QRコードリーダーで読み込んでください。", size=50, text_align=ft.TextAlign.CENTER)
         ], horizontal_alignment=ft.CrossAxisAlignment.CENTER)
         
-        self.equipment_fields = [ft.TextField(text_size=32, data=i) for i in range(8)]
+        self.equipment_fields = [ft.TextField(text_size=24, data=i) for i in range(8)]
 
         for field in self.equipment_fields:
             field.on_submit = lambda _, data=field.data: self.equipment_fields[data+1 if data < 7 else 0].focus()
@@ -65,7 +65,7 @@ class UsedEquipment(ft.View):
                 ft.Container(
                     content=ft.Row([
                         ft.Container(
-                            ft.Text(f"設備{(c+1) + 4*r: >3}", size=40),
+                            ft.Text(f"設備{(c+1) + 4*r: >3}", size=32),
                             width=130
                         ),
                         ft.Container(

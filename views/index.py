@@ -21,11 +21,15 @@ class Index(ft.View):
         self.number_field.value = ""
 
     def on_field_update(self, e):
-        entered_number = e.data
+        entered_number = e.data.replace(" ", "")
+        if entered_number[0] == "S": entered_number = "8" + entered_number[1:]
         print(f"enterd: {entered_number}")
+
         isStudent = r"^[1-48]20\d{4}0$"
         isTeacherOrStaff = r"^00[1-59]0\d{3}0$"
+
         verified = re.match(f"({isStudent})|({isTeacherOrStaff})", entered_number)
+
         if verified:
             self.data = {"studentNo": entered_number}
             history = referenceEntryLog(entered_number)
